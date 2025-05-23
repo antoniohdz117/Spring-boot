@@ -18,6 +18,7 @@ public class CodigoRepository extends JpaRepository<CategoriaRepository> {
     }
 
 
+
     <Codigo> List<Codigo> findByColoniaContainingIgnoreCase(String colonia) {
         return null;
     }
