@@ -1,18 +1,11 @@
 package com.daw.demo.repository;
 
+import com.daw.demo.model.FormaPago;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-public class FormaPagoRepository {
+@Repository
+public interface FormaPagoRepository extends JpaRepository<FormaPago, Integer> {
 
-
-    @Repository
-    public interface formaPagoRepository<FormaPago> extends JpaRepository<FormaPago, Integer> {
-
-
-        List<FormaPago> findByTipoPago(String tipoPago);
-
-        List<FormaPago> findByNombreTitularContainingIgnoreCase(String nombre);
-    }
 }
