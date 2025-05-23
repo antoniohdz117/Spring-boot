@@ -3,7 +3,7 @@ package com.daw.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name= "Codigo")
+@Table(name= "codigo")
 public class Codigo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

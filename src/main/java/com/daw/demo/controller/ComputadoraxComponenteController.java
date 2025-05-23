@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ComputadoraxComponenteController
  {
-  @Autowired
+
   private ComputadoraXComponenteService computadoraXComponenteService;
 
   @GetMapping("/by-computadora/{idComputadora}")

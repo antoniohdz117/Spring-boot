@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/pago")
 public class FormaPagoController {
 
-    @Autowired
+
     private FormaPagoService formaPagoService;
 
     @GetMapping

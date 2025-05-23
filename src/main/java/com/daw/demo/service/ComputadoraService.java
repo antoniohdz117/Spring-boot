@@ -1,7 +1,7 @@
 package com.daw.demo.service;
 
 @Service
-@Transactional
+
 public class ComputadoraService
 {
     Private final ComputadoraRepository computadoraRepository;

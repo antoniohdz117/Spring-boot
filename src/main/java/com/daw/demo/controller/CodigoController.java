@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/Codigo")
 
 public class CodigoController {
-    @Autowired
+
     private CodigoService codigoService;
 
     @GetMapping
