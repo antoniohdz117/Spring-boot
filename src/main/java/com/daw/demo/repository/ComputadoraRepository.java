@@ -5,29 +5,34 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class ComponenteRepository extends JpaRepository<ComponenteRepository> {
+public class ComputadoraRepository extends JpaRepository<CodigoRepository> {
 
-
-    <Componente> List<Componente> findByPrecioBetween(BigDecimal precioMin, BigDecimal precioMax) {
+    <Computadora> List<Computadora> findByFechaPedidoBetween(Date fechaInicio, Date fechaFin) {
         return null;
     }
 
-    List<ComponenteRepository> findByStockGreaterThanAndCategoria(int stock, String categoria) {
+
+    <Computadora> List<Computadora> findByCodigo_IdCodigo(Integer idCodigo) {
         return null;
     }
 
-    <Componente> List<Componente> findByMarcaStartingWith(String prefijo) {
+
+    <Computadora> List<Computadora> findByFormaPago_IdFormaPago(Integer idFormaPago) {
         return null;
     }
 
-    boolean existsByNombre(String nombre) {
-        return false;
+    // Consulta personalizada para hacer una busqueda
+    @Query("SELECT c FROM Computadora c WHERE c.fechaEntrega > CURRENT_DATE AND c.codigo.delegacion = :delegacion")
+    <Computadora>
+    List<Computadora> buscarPendientesPorDelegacion(String delegacion) {
+        return null;
     }
 
     @Override
@@ -46,17 +51,17 @@ public class ComponenteRepository extends JpaRepository<ComponenteRepository> {
     }
 
     @Override
-    public com.daw.demo.repository.ComponenteRepository getOne(Object o) {
+    public com.daw.demo.repository.CodigoRepository getOne(Object o) {
         return null;
     }
 
     @Override
-    public com.daw.demo.repository.ComponenteRepository getById(Object o) {
+    public com.daw.demo.repository.CodigoRepository getById(Object o) {
         return null;
     }
 
     @Override
-    public com.daw.demo.repository.ComponenteRepository getReferenceById(Object o) {
+    public com.daw.demo.repository.CodigoRepository getReferenceById(Object o) {
         return null;
     }
 
@@ -81,7 +86,7 @@ public class ComponenteRepository extends JpaRepository<ComponenteRepository> {
     }
 
     @Override
-    public com.daw.demo.repository.ComponenteRepository saveAndFlush(Object entity) {
+    public com.daw.demo.repository.CodigoRepository saveAndFlush(Object entity) {
         return null;
     }
 

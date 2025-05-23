@@ -2,9 +2,10 @@ package com.daw.demo.controller;
 
 
 import com.daw.demo.model.Usuario;
-import com.daw.demo.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.openmbean.CompositeData;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,48 +13,48 @@ import java.util.Optional;
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
 
-    private UsuarioService usuarioService;
+    @Autowired
 
+    // Obtener todos los usuarios
     @GetMapping
-    public List<Usuario> getAllUsuarios() {
-        return usuarioService.getAllUsuarios();
+    public <Usuario> List<Usuario> getAllUsuarios() {
+        CompositeData usuarioService;
+        return usuarioService.getAll();
     }
 
-    // GET: Obtener usuario por ID
+    // Obtener un usuario por su ID
     @GetMapping("/{id}")
-    public Optional<Usuario> getUsuarioById(@PathVariable Long id) {
-        return usuarioService.getUsuarioById(id);
+    public <Usuario> Usuario getUsuarioById(@PathVariable Long id) {
+        return usuarioService.getById(id).orElse(null);
     }
 
-    // GET: Buscar usuario por correo
-    @GetMapping("/correo/{correo}")
-    public Optional<Usuario> getUsuarioByCorreo(@PathVariable String correo) {
-        return usuarioService.getUsuarioByCorreo(correo);
-    }
-
-    // GET: Obtener usuarios por nombre de rol
-    @GetMapping("/rol/{nombreRol}")
-    public List<Usuario> getUsuariosByRol(@PathVariable String nombreRol) {
-        return usuarioService.getUsuariosByRol(nombreRol);
-    }
-
-    // POST: Crear un nuevo usuario
+    // Crear un nuevo usuario
     @PostMapping
     public Usuario createUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.createUsuario(usuario);
+        return usuarioService.save(usuario);
     }
 
-    // PUT: Actualizar un usuario existente
+    // Actualizar un usuario existente
     @PutMapping("/{id}")
-    public Usuario updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
-        return usuarioService.updateUsuario(id, usuarioDetails);
+    public Usuario updateUsuario(@PathVariable Long id, @RequestBody Usuario usuarioActualizado) {
+        return usuarioService.update(id, usuarioActualizado);
     }
+
+    // Eliminar un usuario
+    @DeleteMapping("/{id}")
+    public void deleteUsuario(@PathVariable Long id) {
+        usuarioService.delete(id);
+    }
+
+    // Obtener usuarios por ID de Rol
+    @GetMapping("/by-rol/{idRol}")
+    public List<Usuario> getUsuariosByRol(@PathVariable Long idRol) {
+        return usuarioService.getByRolId(idRol);
+    }
+
+
 
     // DELETE:elimancion de ususario
 
-    @DeleteMapping("/{id}")
-    public void deleteUsuario(@PathVariable Long id) {
-        usuarioService.deleteUsuario(id);
-    }
 
 }

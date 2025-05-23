@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+@RestController
+@RequestMapping("/api/pago")
 public class FormaPagoController {
 
     @Autowired
@@ -29,7 +32,7 @@ public class FormaPagoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FormaPago> updateFormaPago(@PathVariable Integer id, @RequestBody FormaPago formaPago) {
+    public <FormaPago> ResponseEntity<FormaPago> updateFormaPago(@PathVariable Integer id, @RequestBody FormaPago formaPago) {
         formaPago.setIdFormaPago(id);
         return ResponseEntity.ok(formaPagoService.save(formaPago));
     }
